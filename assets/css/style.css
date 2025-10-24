@@ -1916,3 +1916,24 @@ textarea.form-input::-webkit-resizer { display: none; }
   .timeline-text { max-width: 700px; }
 
 }
+
+/* Fix for timeline bullets - DeepSeek solution */
+/* Remove bullets from main timeline containers only */
+.timeline > .timeline-list {
+  list-style: none !important;
+}
+
+.timeline > .timeline-list > .timeline-item {
+  list-style: none !important;
+  display: block !important;
+}
+
+/* Preserve bullets for nested responsibility lists inside experiences */
+.timeline-item .timeline-list {
+  list-style-type: disc !important;
+}
+
+.timeline-item .timeline-list li {
+  display: list-item !important;
+  list-style-type: disc !important;
+}
