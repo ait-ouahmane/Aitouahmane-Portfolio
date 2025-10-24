@@ -841,6 +841,22 @@ main {
   line-height: 1.6;
 }
 
+.timeline-list {
+  color: var(--white-2);
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.timeline-list li {
+  color: var(--white-2);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.timeline-list li::marker {
+  color: var(--white-2);
+}
+
 
 /**
  * skills 
