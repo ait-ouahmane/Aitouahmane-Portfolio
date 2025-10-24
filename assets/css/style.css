@@ -842,19 +842,21 @@ main {
 }
 
 .timeline-list {
-  color: var(--white-2);
+  color: var(--white-2) !important;
   margin-top: 10px;
   padding-left: 20px;
+  list-style-type: disc;
 }
 
 .timeline-list li {
-  color: var(--white-2);
+  color: var(--white-2) !important;
   margin-bottom: 8px;
   line-height: 1.6;
+  display: list-item;
 }
 
 .timeline-list li::marker {
-  color: var(--white-2);
+  color: var(--white-2) !important;
 }
 
 
