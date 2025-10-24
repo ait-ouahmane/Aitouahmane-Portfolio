@@ -855,7 +855,8 @@ main {
   line-height: 1.6;
   display: list-item !important;
   list-style-type: disc !important;
-  margin-left: 20px;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .timeline-list li::marker {
