@@ -354,6 +354,8 @@ main {
   font-weight: var(--fw-500);
   letter-spacing: -0.25px;
   margin-bottom: 10px;
+  text-align: center;
+  line-height: 1.1;
 }
 
 .info-content .title {
@@ -364,6 +366,7 @@ main {
   width: max-content;
   padding: 3px 12px;
   border-radius: 8px;
+  margin: 22px auto 0;
 }
 
 .info_more-btn {
@@ -1877,8 +1880,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     white-space: nowrap;
     text-align: center;
   }
-
-  .info-content .title { margin: auto; }
 
   .info_more-btn { display: none; }
 
