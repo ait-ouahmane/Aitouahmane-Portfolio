@@ -540,6 +540,9 @@ main {
 
 .service-item {
   position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
   background: var(--border-gradient-onyx);
   padding: 20px;
   border-radius: 14px;
@@ -556,19 +559,31 @@ main {
   z-index: -1;
 }
 
-.service-icon-box { margin-bottom: 10px; }
+.service-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0;
+}
 
-.service-icon-box img { margin: auto; }
+.service-icon-box img {
+  margin: auto;
+  max-width: 60px;
+  max-height: 60px;
+}
 
 .service-icon-box ion-icon {
   display: block;
-  margin: auto;
-  font-size: 40px;
+  margin: 0;
+  font-size: 52px;
   color: var(--orange-yellow-crayola);
-  --ionicon-stroke-width: 30px;
+  --ionicon-stroke-width: 22px;
 }
 
-.service-content-box { text-align: center; }
+.service-content-box { text-align: left; }
 
 .service-item-title { margin-bottom: 7px; }
 
@@ -1439,20 +1454,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   /* service */
 
-  .service-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 18px;
-    padding: 30px;
-  }
-
-  .service-icon-box {
-    margin-bottom: 0;
-    margin-top: 5px;
-  }
-
-  .service-content-box { text-align: left; }
+  .service-item { padding: 30px; }
 
   /* testimonials */
 
