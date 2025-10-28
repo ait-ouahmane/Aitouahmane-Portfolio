@@ -2005,8 +2005,58 @@ textarea.form-input::-webkit-resizer { display: none; }
   opacity: 1;
 }
 
+.project-modal-header { margin-bottom: 24px; }
+
 .project-modal-title {
-  margin-bottom: 18px;
+  font-size: 28px;
+  font-weight: var(--fw-600);
+}
+
+.project-modal-title.article-title::after {
+  width: 40px;
+  height: 4px;
+}
+
+.project-modal-outline {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-modal-outline-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--eerie-black-1);
+  border: 1px solid var(--jet);
+  border-radius: 16px;
+  box-shadow: var(--shadow-1);
+}
+
+.project-modal-outline-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: var(--orange-yellow-crayola);
+  color: var(--eerie-black-2);
+  font-weight: var(--fw-600);
+  font-size: var(--fs-3);
+}
+
+.project-modal-outline-label {
+  font-size: var(--fs-4);
+  font-weight: var(--fw-500);
+  color: var(--white-2);
+}
+
+.project-modal-title {
+  margin-bottom: 0;
   color: var(--white-2);
 }
 
