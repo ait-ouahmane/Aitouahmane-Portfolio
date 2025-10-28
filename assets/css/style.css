@@ -157,6 +157,32 @@ html { font-family: var(--ff-poppins); }
 
 body { background: var(--smoky-black); }
 
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+  filter: brightness(0.6);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 17, 24, 0.82) 0%, rgba(15, 17, 24, 0.95) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-video {
+    display: none;
+  }
+}
+
 
 
 
