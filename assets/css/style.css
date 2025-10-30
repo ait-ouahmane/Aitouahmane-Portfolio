@@ -895,6 +895,28 @@ main {
   line-height: 1.6;
 }
 
+.timeline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--orange-yellow-crayola);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeline-link::after {
+  content: "\2197";
+  font-size: 12px;
+}
+
+.timeline-link:hover,
+.timeline-link:focus {
+  color: var(--white-2);
+}
+
 .timeline-list {
   color: var(--white-2) !important;
   margin-top: 10px;
@@ -954,6 +976,8 @@ main {
   height: 100%;
   border-radius: inherit;
 }
+
+.resume .skill { margin-bottom: 50px; }
 
 
 
