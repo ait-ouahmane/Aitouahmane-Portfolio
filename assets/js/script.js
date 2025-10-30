@@ -196,6 +196,7 @@ for (let i = 0; i < filterBtn.length; i++) {
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
+const formStatus = document.querySelector("[data-form-status]");
 
 // add event to all form input field
 for (let i = 0; i < formInputs.length; i++) {
@@ -208,6 +209,48 @@ for (let i = 0; i < formInputs.length; i++) {
       formBtn.setAttribute("disabled", "");
     }
 
+  });
+}
+
+if (form && formStatus && formBtn) {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form.action || form.action.includes("your-form-id")) {
+      formStatus.textContent = "Update the form action URL with your Formspree endpoint.";
+      formStatus.classList.remove("success");
+      formStatus.classList.add("error");
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    formBtn.setAttribute("disabled", "");
+    formStatus.textContent = "Sending...";
+    formStatus.classList.remove("success", "error");
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method || "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      });
+
+      if (response.ok) {
+        form.reset();
+        formBtn.setAttribute("disabled", "");
+        formStatus.textContent = "Message sent! I'll get back to you soon.";
+        formStatus.classList.add("success");
+      } else {
+        const data = await response.json().catch(() => null);
+        const message = data && data.error ? data.error : "Unable to send message. Please try again.";
+        throw new Error(message);
+      }
+    } catch (error) {
+      formStatus.textContent = error.message || "Unable to send message. Please try again.";
+      formStatus.classList.add("error");
+      formBtn.removeAttribute("disabled");
+    }
   });
 }
 

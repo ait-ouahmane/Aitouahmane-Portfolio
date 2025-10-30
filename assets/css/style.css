@@ -1335,6 +1335,16 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
+.form-status {
+  margin-top: 12px;
+  font-size: var(--fs-7);
+  font-weight: var(--fw-400);
+  color: var(--light-gray);
+}
+
+.form-status.success { color: var(--orange-yellow-crayola); }
+.form-status.error { color: var(--bittersweet-shimmer); }
+
 
 
 
