@@ -184,6 +184,11 @@ for (let i = 0; i < selectItems.length; i++) {
 
   closeBtn.addEventListener("click", closeModal);
   overlay.addEventListener("click", closeModal);
+  overlay.addEventListener("wheel", (event) => {
+    if (!modal) return;
+    modal.scrollTop += event.deltaY;
+    event.preventDefault();
+  }, { passive: false });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
