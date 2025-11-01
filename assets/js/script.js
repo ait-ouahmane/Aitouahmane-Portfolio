@@ -98,6 +98,7 @@ for (let i = 0; i < selectItems.length; i++) {
     tools: document.querySelector("[data-spec='tools']")
   };
   const projectsSection = document.querySelector(".projects");
+  const portfolioArticle = document.querySelector("article[data-page='portfolio']");
 
   if (!projectLinks.length || !modalContainer || !modal || !overlay || !closeBtn || !titleEl || !projectsSection) {
     return;
@@ -106,14 +107,12 @@ for (let i = 0; i < selectItems.length; i++) {
   let isOpen = false;
 
   const alignModal = () => {
-    const rect = projectsSection.getBoundingClientRect();
+    const anchor = portfolioArticle || projectsSection;
+    const rect = anchor.getBoundingClientRect();
     const availableWidth = Math.min(rect.width, window.innerWidth - 32);
 
     let left = rect.left;
-    if (left + availableWidth > window.innerWidth - 16) {
-      left = Math.max(16, window.innerWidth - availableWidth - 16);
-    }
-    left = Math.max(left, 16);
+    left = Math.max(16, Math.min(left, window.innerWidth - availableWidth - 16));
 
     const top = Math.max(rect.top, 16);
 
