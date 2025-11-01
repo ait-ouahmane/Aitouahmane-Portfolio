@@ -2059,6 +2059,9 @@ textarea.form-input::-webkit-resizer { display: none; }
   opacity: 0;
   transition: var(--transition-1);
   z-index: 31;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .project-modal-container.active .project-modal {
