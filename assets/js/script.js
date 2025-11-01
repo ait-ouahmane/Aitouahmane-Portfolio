@@ -91,7 +91,6 @@ for (let i = 0; i < selectItems.length; i++) {
   const mediaEl = document.querySelector("[data-project-outline='media']");
   const specCells = {
     layers: document.querySelector("[data-spec='layers']"),
-    stackup: document.querySelector("[data-spec='stackup']"),
     power: document.querySelector("[data-spec='power']"),
     processor: document.querySelector("[data-spec='processor']"),
     interfaces: document.querySelector("[data-spec='interfaces']"),
@@ -130,9 +129,6 @@ for (let i = 0; i < selectItems.length; i++) {
 
     if (specCells.layers) {
       specCells.layers.textContent = projectData.specLayers || "TBD";
-    }
-    if (specCells.stackup) {
-      specCells.stackup.textContent = projectData.specStackup || "TBD";
     }
     if (specCells.power) {
       specCells.power.textContent = projectData.specPower || "TBD";
