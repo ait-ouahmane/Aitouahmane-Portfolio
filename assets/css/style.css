@@ -977,6 +977,8 @@ main {
   border-radius: inherit;
 }
 
+.resume .skill { margin-bottom: 45px; }
+
 .resume .skill { margin-bottom: 50px; }
 
 
@@ -2137,6 +2139,36 @@ textarea.form-input::-webkit-resizer { display: none; }
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   line-height: 1.6;
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-6);
+}
+
+.spec-table th,
+.spec-table td {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--jet);
+}
+
+.spec-table th {
+  width: 40%;
+  color: var(--light-gray);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spec-table td {
+  color: var(--white-2);
+  font-weight: var(--fw-400);
+}
+
+.spec-table tr:last-child th,
+.spec-table tr:last-child td {
+  border-bottom: none;
 }
 
 .project-modal-title {

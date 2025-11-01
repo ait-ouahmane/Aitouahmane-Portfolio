@@ -87,6 +87,16 @@ for (let i = 0; i < selectItems.length; i++) {
   const overlay = document.querySelector("[data-project-overlay]");
   const closeBtn = document.querySelector("[data-project-modal-close-btn]");
   const titleEl = document.querySelector("[data-project-modal-title]");
+  const descriptionEl = document.querySelector("[data-project-outline='description']");
+  const mediaEl = document.querySelector("[data-project-outline='media']");
+  const specCells = {
+    layers: document.querySelector("[data-spec='layers']"),
+    stackup: document.querySelector("[data-spec='stackup']"),
+    power: document.querySelector("[data-spec='power']"),
+    processor: document.querySelector("[data-spec='processor']"),
+    interfaces: document.querySelector("[data-spec='interfaces']"),
+    tools: document.querySelector("[data-spec='tools']")
+  };
   const projectsSection = document.querySelector(".projects");
 
   if (!projectLinks.length || !modalContainer || !modal || !overlay || !closeBtn || !titleEl || !projectsSection) {
@@ -112,8 +122,36 @@ for (let i = 0; i < selectItems.length; i++) {
     modal.style.top = `${top}px`;
   };
 
-  const openModal = (titleText) => {
+  const openModal = (titleText, projectData = {}) => {
     titleEl.textContent = titleText || "Project";
+
+    if (descriptionEl) {
+      descriptionEl.textContent = projectData.description || "Description coming soon.";
+    }
+
+    if (specCells.layers) {
+      specCells.layers.textContent = projectData.specLayers || "TBD";
+    }
+    if (specCells.stackup) {
+      specCells.stackup.textContent = projectData.specStackup || "TBD";
+    }
+    if (specCells.power) {
+      specCells.power.textContent = projectData.specPower || "TBD";
+    }
+    if (specCells.processor) {
+      specCells.processor.textContent = projectData.specProcessor || "TBD";
+    }
+    if (specCells.interfaces) {
+      specCells.interfaces.textContent = projectData.specInterfaces || "TBD";
+    }
+    if (specCells.tools) {
+      specCells.tools.textContent = projectData.specTools || "TBD";
+    }
+
+    if (mediaEl) {
+      mediaEl.textContent = projectData.mediaNote || "Layer previews coming soon.";
+    }
+
     alignModal();
     modalContainer.classList.add("active");
     overlay.classList.add("active");
@@ -138,7 +176,9 @@ for (let i = 0; i < selectItems.length; i++) {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const titleNode = link.querySelector(".project-title");
-      openModal(titleNode ? titleNode.textContent.trim() : "Project");
+      const projectItem = link.closest(".project-item");
+      const projectData = projectItem ? projectItem.dataset : {};
+      openModal(titleNode ? titleNode.textContent.trim() : "Project", projectData);
     });
   });
 
