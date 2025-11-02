@@ -89,6 +89,8 @@ for (let i = 0; i < selectItems.length; i++) {
   const titleEl = document.querySelector("[data-project-modal-title]");
   const descriptionEl = document.querySelector("[data-project-outline='description']");
   const mediaEl = document.querySelector("[data-project-outline='media']");
+  const descriptionMediaEl = document.querySelector("[data-media-description]");
+  const galleryEl = document.querySelector("[data-media-gallery]");
   const specCells = {
     layers: document.querySelector("[data-spec='layers']"),
     power: document.querySelector("[data-spec='power']"),
@@ -99,7 +101,7 @@ for (let i = 0; i < selectItems.length; i++) {
   const projectsSection = document.querySelector(".projects");
   const portfolioArticle = document.querySelector("article[data-page='portfolio']");
 
-  if (!projectLinks.length || !modalContainer || !modal || !overlay || !closeBtn || !titleEl || !projectsSection) {
+  if (!projectLinks.length || !modalContainer || !modal || !overlay || !closeBtn || !titleEl || !projectsSection || !descriptionEl || !mediaEl || !descriptionMediaEl || !galleryEl) {
     return;
   }
 
@@ -143,8 +145,82 @@ for (let i = 0; i < selectItems.length; i++) {
       specCells.tools.textContent = projectData.specTools || "TBD";
     }
 
-    if (mediaEl) {
-      mediaEl.textContent = projectData.mediaNote || "Layer previews coming soon.";
+    if (descriptionMediaEl) {
+      descriptionMediaEl.innerHTML = "";
+      const descImage = projectData.descriptionImage;
+      if (descImage) {
+        const figure = document.createElement("figure");
+        figure.className = "project-media-item";
+
+        const img = document.createElement("img");
+        img.src = descImage;
+        img.alt = projectData.descriptionLabel ? `${titleEl.textContent} - ${projectData.descriptionLabel}` : `${titleEl.textContent} illustration`;
+        img.loading = "lazy";
+        figure.appendChild(img);
+
+        if (projectData.descriptionLabel) {
+          const caption = document.createElement("figcaption");
+          caption.textContent = projectData.descriptionLabel;
+          figure.appendChild(caption);
+        }
+
+        descriptionMediaEl.appendChild(figure);
+        descriptionMediaEl.style.display = "block";
+      } else {
+        descriptionMediaEl.style.display = "none";
+      }
+    }
+
+    if (galleryEl) {
+      galleryEl.innerHTML = "";
+      galleryEl.classList.remove("is-visible");
+
+      const galleryData = (projectData.gallery || "")
+        .split(";")
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .map((entry) => {
+          const [label, src] = entry.split("|");
+          return {
+            label: label ? label.trim() : "",
+            src: src ? src.trim() : ""
+          };
+        })
+        .filter((item) => item.src);
+
+      if (galleryData.length) {
+        galleryEl.classList.add("is-visible");
+        galleryData.forEach(({ label, src }) => {
+          const figure = document.createElement("figure");
+          figure.className = "project-media-item";
+
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = label ? `${titleEl.textContent} - ${label}` : `${titleEl.textContent} layer preview`;
+          img.loading = "lazy";
+          figure.appendChild(img);
+
+          if (label) {
+            const caption = document.createElement("figcaption");
+            caption.textContent = label;
+            figure.appendChild(caption);
+          }
+
+          galleryEl.appendChild(figure);
+        });
+
+        if (projectData.mediaNote) {
+          mediaEl.textContent = projectData.mediaNote;
+          mediaEl.style.display = "block";
+        } else {
+          mediaEl.textContent = "";
+          mediaEl.style.display = "none";
+        }
+      } else {
+        galleryEl.classList.remove("is-visible");
+        mediaEl.textContent = projectData.mediaNote || "Layer previews coming soon.";
+        mediaEl.style.display = "block";
+      }
     }
 
     alignModal();
