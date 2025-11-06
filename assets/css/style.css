@@ -2148,6 +2148,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 .project-modal-outline-body {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 6px;
 }
 
