@@ -1,44 +1,36 @@
-# vCard - Personal portfolio
+# Ait Ouahmane Portfolio
 
-![GitHub repo size](https://img.shields.io/github/repo-size/codewithsadee/vcard-personal-portfolio)
-![GitHub stars](https://img.shields.io/github/stars/codewithsadee/vcard-personal-portfolio?style=social)
-![GitHub forks](https://img.shields.io/github/forks/codewithsadee/vcard-personal-portfolio?style=social)
-[![Twitter Follow](https://img.shields.io/twitter/follow/codewithsadee_?style=social)](https://twitter.com/intent/follow?screen_name=codewithsadee_)
-[![YouTube Video Views](https://img.shields.io/youtube/views/SoxmIlgf2zM?style=social)](https://youtu.be/SoxmIlgf2zM)
+This repository contains the personal portfolio for Ait Ouahmane Abderrahmane, a hardware design engineer specializing in mixed-signal PCB development, FPGA integration, and embedded systems.
 
-vCard is a fully responsive personal portfolio website, responsive for all devices, built using HTML, CSS, and JavaScript.
+The site is a single-page experience built with vanilla HTML, CSS, and JavaScript and tailored to highlight professional experience, featured projects, and certifications.
 
-## Demo
+## Highlights
+- Responsive layout with sidebar navigation and section-based content (`index.html`)
+- Interactive project gallery with modal specs, block diagrams, and multi-layer imagery (`assets/js/script.js`)
+- Formspree-powered contact form with inline validation (`assets/js/script.js`)
+- Optimized media assets for portfolio storytelling (`assets/images`)
 
-![vCard Desktop Demo](./website-demo-image/desktop.png "Desktop Demo")
-![vCard Mobile Demo](./website-demo-image/mobile.png "Mobile Demo")
+## Project Structure
+- `index.html` – Primary markup for the entire site
+- `assets/css/style.css` – Custom styling for layout, typography, and animations
+- `assets/js/script.js` – UI interactions (sidebar toggle, portfolio modal, filters, form handling)
+- `assets/images/` – Headshots, project renders, and supporting media
+- `website-demo-image/` – Demo screenshots used for documentation
 
-## Prerequisites
+## Run Locally
+1. Clone or download this repository.
+2. Open `index.html` in your browser to view the site.
 
-Before you begin, ensure you have met the following requirements:
+No build tools or dependencies are required.
 
-* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+## Editing Content
+- **Sidebar / About / Resume**: Update the relevant sections directly in `index.html`.
+- **Projects**: Each portfolio item stores its details using `data-` attributes. Update descriptions, specifications, and media paths on the `<li class="project-item">` elements under the portfolio section.
+- **Contact Form**: Form submissions are routed through Formspree. Adjust the `action` attribute if you move to a different endpoint.
+- **Blog**: The blog article remains in the markup but can be toggled on/off from the navigation for future use.
 
-## Installing vCard
-
-To install **vCard**, follow these steps:
-
-Linux and macOS:
-
-```bash
-sudo git clone https://github.com/codewithsadee/vcard-personal-portfolio.git
-```
-
-Windows:
-
-```bash
-git clone https://github.com/codewithsadee/vcard-personal-portfolio.git
-```
-
-## Contact
-
-If you want to contact me you can reach me at [Twitter](https://www.x.com/codewithsadee_).
+## Deployment
+Because the site is static, you can host it on any static-friendly platform (GitHub Pages, Netlify, Vercel, etc.). Upload the full directory and point your domain to the deployed build.
 
 ## License
-
-MIT
+This project is released under the MIT License – see `LICENSE` for details.
