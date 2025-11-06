@@ -98,6 +98,8 @@ for (let i = 0; i < selectItems.length; i++) {
     interfaces: document.querySelector("[data-spec='interfaces']"),
     tools: document.querySelector("[data-spec='tools']")
   };
+  const specSection = specCells.layers ? specCells.layers.closest(".project-modal-outline-item") : null;
+  const gallerySection = galleryEl ? galleryEl.closest(".project-modal-outline-item") : null;
   const projectsSection = document.querySelector(".projects");
   const portfolioArticle = document.querySelector("article[data-page='portfolio']");
 
@@ -125,101 +127,149 @@ for (let i = 0; i < selectItems.length; i++) {
   const openModal = (titleText, projectData = {}) => {
     titleEl.textContent = titleText || "Project";
 
-    if (descriptionEl) {
-      descriptionEl.textContent = projectData.description || "Description coming soon.";
-    }
+    const isPlaceholder = projectData.detailsReady === "false";
 
-    if (specCells.layers) {
-      specCells.layers.textContent = projectData.specLayers || "TBD";
-    }
-    if (specCells.power) {
-      specCells.power.textContent = projectData.specPower || "TBD";
-    }
-    if (specCells.processor) {
-      specCells.processor.textContent = projectData.specProcessor || "TBD";
-    }
-    if (specCells.interfaces) {
-      specCells.interfaces.textContent = projectData.specInterfaces || "TBD";
-    }
-    if (specCells.tools) {
-      specCells.tools.textContent = projectData.specTools || "TBD";
-    }
+    if (isPlaceholder) {
+      if (descriptionEl) {
+        descriptionEl.textContent = "Details coming soon.";
+      }
 
-    if (descriptionMediaEl) {
-      descriptionMediaEl.innerHTML = "";
-      const descImage = projectData.descriptionImage;
-      if (descImage) {
-        const figure = document.createElement("figure");
-        figure.className = "project-media-item";
-
-        const img = document.createElement("img");
-        img.src = descImage;
-        img.alt = projectData.descriptionLabel ? `${titleEl.textContent} - ${projectData.descriptionLabel}` : `${titleEl.textContent} illustration`;
-        img.loading = "lazy";
-        figure.appendChild(img);
-
-        if (projectData.descriptionLabel) {
-          const caption = document.createElement("figcaption");
-          caption.textContent = projectData.descriptionLabel;
-          figure.appendChild(caption);
-        }
-
-        descriptionMediaEl.appendChild(figure);
-        descriptionMediaEl.style.display = "block";
-      } else {
+      if (descriptionMediaEl) {
+        descriptionMediaEl.innerHTML = "";
         descriptionMediaEl.style.display = "none";
       }
-    }
 
-    if (galleryEl) {
-      galleryEl.innerHTML = "";
-      galleryEl.classList.remove("is-visible");
+      if (specSection) {
+        specSection.style.display = "none";
+      }
 
-      const galleryData = (projectData.gallery || "")
-        .split(";")
-        .map((item) => item.trim())
-        .filter(Boolean)
-        .map((entry) => {
-          const [label, src] = entry.split("|");
-          return {
-            label: label ? label.trim() : "",
-            src: src ? src.trim() : ""
-          };
-        })
-        .filter((item) => item.src);
+      Object.values(specCells).forEach((cell) => {
+        if (cell) {
+          cell.textContent = "";
+        }
+      });
 
-      if (galleryData.length) {
-        galleryEl.classList.add("is-visible");
-        galleryData.forEach(({ label, src }) => {
+      if (galleryEl) {
+        galleryEl.innerHTML = "";
+        galleryEl.classList.remove("is-visible");
+      }
+
+      if (gallerySection) {
+        gallerySection.style.display = "none";
+      }
+
+      if (mediaEl) {
+        mediaEl.textContent = "";
+        mediaEl.style.display = "none";
+      }
+    } else {
+      if (descriptionEl) {
+        descriptionEl.textContent = projectData.description || "Description coming soon.";
+      }
+
+      if (descriptionMediaEl) {
+        descriptionMediaEl.innerHTML = "";
+        const descImage = projectData.descriptionImage;
+        if (descImage) {
           const figure = document.createElement("figure");
           figure.className = "project-media-item";
 
           const img = document.createElement("img");
-          img.src = src;
-          img.alt = label ? `${titleEl.textContent} - ${label}` : `${titleEl.textContent} layer preview`;
+          img.src = descImage;
+          img.alt = projectData.descriptionLabel ? `${titleEl.textContent} - ${projectData.descriptionLabel}` : `${titleEl.textContent} illustration`;
           img.loading = "lazy";
           figure.appendChild(img);
 
-          if (label) {
+          if (projectData.descriptionLabel) {
             const caption = document.createElement("figcaption");
-            caption.textContent = label;
+            caption.textContent = projectData.descriptionLabel;
             figure.appendChild(caption);
           }
 
-          galleryEl.appendChild(figure);
-        });
-
-        if (projectData.mediaNote) {
-          mediaEl.textContent = projectData.mediaNote;
-          mediaEl.style.display = "block";
+          descriptionMediaEl.appendChild(figure);
+          descriptionMediaEl.style.display = "block";
         } else {
-          mediaEl.textContent = "";
-          mediaEl.style.display = "none";
+          descriptionMediaEl.style.display = "none";
         }
-      } else {
+      }
+
+      if (specSection) {
+        specSection.style.display = "";
+      }
+
+      if (specCells.layers) {
+        specCells.layers.textContent = projectData.specLayers || "TBD";
+      }
+      if (specCells.power) {
+        specCells.power.textContent = projectData.specPower || "TBD";
+      }
+      if (specCells.processor) {
+        specCells.processor.textContent = projectData.specProcessor || "TBD";
+      }
+      if (specCells.interfaces) {
+        specCells.interfaces.textContent = projectData.specInterfaces || "TBD";
+      }
+      if (specCells.tools) {
+        specCells.tools.textContent = projectData.specTools || "TBD";
+      }
+
+      if (galleryEl) {
+        galleryEl.innerHTML = "";
         galleryEl.classList.remove("is-visible");
-        mediaEl.textContent = projectData.mediaNote || "Layer previews coming soon.";
-        mediaEl.style.display = "block";
+
+        const galleryData = (projectData.gallery || "")
+          .split(";")
+          .map((item) => item.trim())
+          .filter(Boolean)
+          .map((entry) => {
+            const [label, src] = entry.split("|");
+            return {
+              label: label ? label.trim() : "",
+              src: src ? src.trim() : ""
+            };
+          })
+          .filter((item) => item.src);
+
+        if (gallerySection) {
+          gallerySection.style.display = "";
+        }
+
+        if (galleryData.length) {
+          galleryEl.classList.add("is-visible");
+          galleryData.forEach(({ label, src }) => {
+            const figure = document.createElement("figure");
+            figure.className = "project-media-item";
+
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = label ? `${titleEl.textContent} - ${label}` : `${titleEl.textContent} layer preview`;
+            img.loading = "lazy";
+            figure.appendChild(img);
+
+            if (label) {
+              const caption = document.createElement("figcaption");
+              caption.textContent = label;
+              figure.appendChild(caption);
+            }
+
+            galleryEl.appendChild(figure);
+          });
+
+          if (mediaEl) {
+            if (projectData.mediaNote) {
+              mediaEl.textContent = projectData.mediaNote;
+              mediaEl.style.display = "block";
+            } else {
+              mediaEl.textContent = "";
+              mediaEl.style.display = "none";
+            }
+          }
+        } else if (mediaEl) {
+          mediaEl.textContent = projectData.mediaNote || "Layer previews coming soon.";
+          mediaEl.style.display = "block";
+        }
+      } else if (gallerySection) {
+        gallerySection.style.display = "";
       }
     }
 
